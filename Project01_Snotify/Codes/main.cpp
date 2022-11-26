@@ -17,10 +17,8 @@ int main(int argc, char** argv)
 	list.pop_front();
 	list.push_front(70);
 	list.push_front(80);
-	list.push_front(90);
-	list.push_front(100);
-
-	// 100 90 80 70 20 25 30 35 40 50 
+	list.push_back(90);
+	list.push_back(100);
 
 	LinkedList<int>::iterator iter = list.begin();
 	for (iter = list.begin(); iter != list.end(); ++iter)
@@ -30,10 +28,15 @@ int main(int argc, char** argv)
 			list.push_next(iter, 35);
 			list.push_prev(iter, 25);
 		}
+		else if ((*iter) == 50)
+		{
+			list.push_next(iter, 55);
+			iter = list.pop(iter);
+		}
 	}
 
+	// 80 70 20 25 30 35 40 55 90 100
 
-	//LinkedList<int>::iterator iter = list.begin();
 	for (iter = list.begin(); iter != list.end(); ++iter)
 	{
 		cout << *iter << endl;

@@ -22,7 +22,6 @@ public:
 		LinkedListNode<T>* current;
 		iterator(LinkedListNode<T>* iter) { current = iter; }
 	public:
-		//iterator();
 		T& operator *() { return current->data; };
 		bool operator ==(const iterator& iter) const { return current == iter.current; }
 		bool operator !=(const iterator& iter) const { return current != iter.current; }
@@ -116,17 +115,19 @@ public:
 		delete firstNode;
 		--dataCount;
 	}
-	void pop(iterator& iter)
+	iterator pop(iterator& iter)
 	{
 		if (0 == dataCount)
-			return;
+			return iter;
 
-		LinkedListNode<T>* prevNode = iter->current->prev;
-		LinkedListNode<T>* nextNode = iter->current->next;
+		LinkedListNode<T>* prevNode = iter.current->prev;
+		LinkedListNode<T>* nextNode = iter.current->next;
 		prevNode->next = nextNode;
 		nextNode->prev = prevNode;
-		delete iter->current;
+		delete iter.current;
 		--dataCount;
+
+		return iterator(prevNode);
 	}
 	int size() const { return dataCount; }
 	bool empty() const { return dataCount == 0; }
