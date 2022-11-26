@@ -1,15 +1,6 @@
 #ifndef _LINKEDLIST_H_
 #define _LINKEDLIST_H_
 
-//template <typename T>
-//class LinkedListNode
-//{
-//	T data;
-//	int index = 0;
-//	LinkedListNode<T>* prev;
-//	LinkedListNode<T>* next;
-//};
-
 template <typename T>
 class LinkedList
 {
@@ -22,7 +13,6 @@ private:
 		int index = 0;
 		LinkedListNode<T>* prev = nullptr;
 		LinkedListNode<T>* next = nullptr;
-		//friend class iterator;
 	};
 
 public:
