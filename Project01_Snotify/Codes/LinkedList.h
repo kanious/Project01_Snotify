@@ -1,6 +1,8 @@
 #ifndef _LINKEDLIST_H_
 #define _LINKEDLIST_H_
 
+#include <iostream>
+
 template <typename T>
 class LinkedList
 {
@@ -31,7 +33,6 @@ public:
 	};
 
 private:
-	T data;
 	int dataCount;
 	LinkedListNode<T>* head;
 	LinkedListNode<T>* tail;
@@ -44,6 +45,19 @@ public:
 		tail = new LinkedListNode<T>();
 		head->next = tail;
 		tail->prev = head;
+	}
+	~LinkedList()
+	{
+		LinkedListNode<T>* node = head;
+		LinkedListNode<T>* nextNode = head->next;
+
+		while (node != nullptr)
+		{
+			nextNode = node->next;
+			delete node;
+			node = nextNode;
+		}
+		dataCount = 0;
 	}
 	void push_back(const T& data)
 	{
@@ -128,6 +142,22 @@ public:
 		--dataCount;
 
 		return iterator(prevNode);
+	}
+	void clear()
+	{
+		LinkedListNode<T>* node = head->next;
+		LinkedListNode<T>* nextNode;
+
+		while (dataCount != 0)
+		{
+			nextNode = node->next;
+			delete node;
+			node = nextNode;
+			--dataCount;
+		}
+
+		head->next = tail;
+		tail->prev = head;
 	}
 	int size() const { return dataCount; }
 	bool empty() const { return dataCount == 0; }
