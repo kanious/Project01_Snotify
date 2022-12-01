@@ -170,8 +170,6 @@ bool cPersonGenerator::readSurnameFile(string filePath, string& errorString)
 		m_vecSurnames.push_back(name);
 
 		lineNum++;
-		if (lineNum > 2000)
-			break;
 	}
 
 	return true;

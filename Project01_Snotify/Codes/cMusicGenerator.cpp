@@ -64,8 +64,6 @@ bool cMusicGenerator::LoadMusicInformation(std::string musicFileName, std::strin
 			mapSongs_artistVer.insert(song.artist, song);
 
 		lineNum++;
-		if (lineNum > 2000)
-			break;
 	}
 
 	hash_map<string, sSongInfo>::iterator iter = mapSongs.begin();
@@ -74,13 +72,21 @@ bool cMusicGenerator::LoadMusicInformation(std::string musicFileName, std::strin
 		iter.second().audioTag = GetRandomAudio();
 		m_vecSongs.push_back(iter.second());
 	}
-	mapSongs.clear();
 
+	sSongInfo info;
 	for (iter = mapSongs_artistVer.begin(); iter != mapSongs_artistVer.end(); ++iter)
 	{
+		if (mapSongs.find(iter.second().name, info))
+		{
+			if (iter.first() == info.artist)
+				continue;
+		}
+
 		iter.second().audioTag = GetRandomAudio();
 		m_vecSongs.push_back(iter.second());
 	}
+
+	mapSongs.clear();
 	mapSongs_artistVer.clear();
 
 	return true;

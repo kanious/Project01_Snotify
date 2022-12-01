@@ -4,7 +4,8 @@
 #include "cSong.h"
 #include "HashMap.h"
 #include "Vector.h"
-
+#include <iostream>
+using namespace std;
 class cMusicGenerator
 {
 public:
@@ -36,6 +37,14 @@ private:
 	vector<sSongInfo> m_vecSongs;
 private:
 	std::string GetRandomAudio();
+public:
+	void test()
+	{
+		for (int i = 0; i < m_vecSongs.size(); ++i)
+		{
+			cout << m_vecSongs[i].name << ", " << m_vecSongs[i].artist << endl;
+		}
+	}
 // бубубу MyWork бубубу //
 };
 

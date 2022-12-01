@@ -127,6 +127,7 @@ int main(int argc, char** argv)
 		delete MG;
 		return 1;
 	}
+
 	cSnotify* snotify = new cSnotify();
 
 	cSong* newSong = MG->getRandomSong();
