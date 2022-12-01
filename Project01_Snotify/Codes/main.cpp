@@ -35,13 +35,8 @@ void VectorTest()
 	//for (iter = myVector.begin(); iter != myVector.end(); ++iter)
 	//	cout << *iter << endl;
 
-	vector<float>::iterator iter = myVector.begin();
-	++iter;
-	++iter;
-	myVector.erase(iter);
-
-	//for (int i = 0; i < myVector.size(); ++i)
-	//	cout << myVector[i] << endl;
+	for (int i = 0; i < myVector.size(); ++i)
+		cout << myVector[i] << endl;
 
 }
 void LinkedListTest()
@@ -84,84 +79,21 @@ void LinkedListTest()
 }
 void HashMapTest()
 {
-	//hash_map<string, int> myMap;
+	hash_map<string, int> myMap;
 
-	//myMap.insert("test", 1);
-	//myMap.insert("test2", 2);
-	//myMap.insert("test3", 3);
-	//myMap.insert("test4", 4);
+	myMap.insert("test", 1);
+	myMap.insert("test2", 2);
+	myMap.insert("test3", 3);
+	myMap.insert("test4", 4);
 
-	//myMap.remove("test3");
-	//hash_map<string, int>::iterator iter = myMap.begin();
-	//for (iter = myMap.begin(); iter != myMap.end(); ++iter)
-	//{
-	//	cout << "key: " << iter.first() << ", value: " << iter.second() << endl;
-	//}
-}
-
-
-
-void insertion_sort(string pArray[], int first, int last, int gap)
-{
-	int j = 0;
-	for (int i = first + gap; i < last; i = i + gap)
+	myMap.remove("test3");
+	hash_map<string, int>::iterator iter = myMap.begin();
+	for (iter = myMap.begin(); iter != myMap.end(); ++iter)
 	{
-		string save = pArray[i];
-
-		for (j = i - gap; ; j = j - gap)
-		{
-			if (j < first)
-				break;
-
-			string current = pArray[j];
-			if (current.size() == 0 || save.size() == 0)
-				break;
-
-			bool isBreak = false;
-			for (int k = 0; k < current.size(); ++k)
-			{
-				if (save.size() <= k)
-				{
-					isBreak = true;
-					break;
-				}
-
-				if (current[k] == save[k])
-					continue;
-
-				if (current[k] <= save[k])
-					isBreak = true;
-				
-				break;
-			}
-
-			if (isBreak)
-				break;
-
-			//if (pArray[j] <= save)
-			//	break;
-
-			pArray[j + gap] = pArray[j];
-		}
-
-		pArray[j + gap] = save;
+		cout << "key: " << iter.first() << ", value: " << iter.second() << endl;
 	}
 }
-void shell_sort(string pArray[], unsigned int size)
-{
-	int gap;
 
-	for (gap = size / 2; gap > 0; gap = gap / 2)
-	{
-		if ((gap % 2) == 0)
-			++gap;
-
-		for (int i = 0; i < gap; i++)
-		{
-			insertion_sort(pArray, i, size, gap);
-		}
-	}
-}
 
 int main(int argc, char** argv)
 {
@@ -172,23 +104,12 @@ int main(int argc, char** argv)
 
 	srand((unsigned int)time(NULL));
 
+
+
 	//LinkedListTest();
 	//VectorTest();
 	//HashMapTest();
 
-	//int i;
-	//int n = 10;
-	//string list[10] = { "eijfq", "difw", "bkdiw", "aaljfde", "otre", "dd", "pbi", "wofj", "jbio", "ceif" };
-
-	//// 셸 정렬 수행
-	//shell_sort(list, n);
-
-	//// 정렬 결과 출력
-	//for (i = 0; i < n; i++) {
-	//	printf("%s\n", list[i].c_str());
-	//}
-
-	//return 0;
 
 	string errorString = "";
 
@@ -220,47 +141,9 @@ int main(int argc, char** argv)
 	snotify->StopSong(newSong);
 	delete newSong;
 
-
-	//string findFirst = "";
-	//string findLast = "";
-	//for (int i = 0; i < 500; ++i)
-	//{
-	//	cPerson* newPerson = PG->generateRandomPerson();
-	//	if (i == 10)
-	//	{
-	//		findFirst = newPerson->first;
-	//		findLast = newPerson->last;
-	//	}
-	//	if (i == 100 || i == 200 || i == 300)
-	//	{
-	//		newPerson->first = findFirst;
-	//		newPerson->last = findLast;
-	//	}
-	//	snotify->AddUser(newPerson, errorString);
-	//	delete newPerson;
-	//}
-
-	//cPerson* pPeople = nullptr;
-	//unsigned int arraySize = 0;
-	//snotify->FindUsersFirstLastNames(findFirst, findLast, pPeople, arraySize);
-
-
-	//for (unsigned int i = 0; i < arraySize; ++i)
-	//{
-	//	cout << pPeople[i].first << " " << pPeople[i].last << endl;
-	//}
-
-	//delete[] pPeople;
-
-
-
-	//delete newPerson;
-	//delete newSong;
-	//delete newSong2;
-
-	delete PG;
-	delete MG;
 	delete snotify;
+	delete MG;
+	delete PG;
 
 	return 0;
 }
