@@ -1,55 +1,55 @@
 #ifndef _LINKEDLIST_H_
 #define _LINKEDLIST_H_
 
-#include <iostream>
-
 template <typename T>
-class LinkedList
+class list
 {
 private:
-	template <typename T>
-	class LinkedListNode
+	//template <typename T>
+	class listNode
 	{
 	public:
 		T data;
 		int index = 0;
-		LinkedListNode<T>* prev = nullptr;
-		LinkedListNode<T>* next = nullptr;
+		listNode* prev = nullptr;
+		listNode* next = nullptr;
 	};
 
 public:
 	class iterator
 	{
 	private:
-		LinkedListNode<T>* current;
-		iterator(LinkedListNode<T>* iter) { current = iter; }
+		listNode* current;
+		iterator(listNode* iter) { current = iter; }
 	public:
 		T& operator *() { return current->data; };
 		bool operator ==(const iterator& iter) const { return current == iter.current; }
 		bool operator !=(const iterator& iter) const { return current != iter.current; }
 		iterator& operator ++() { current = current->next; return *this; }
+		iterator& operator ++(int val) { iterator temp(current); current = current->next; return temp; }
 		iterator& operator --() { current = current->prev; return *this; }
-		friend class LinkedList;
+		iterator& operator --(int val) { iterator temp(current); current = current->prev; return temp; }
+		friend class list;
 	};
 
 private:
 	int dataCount;
-	LinkedListNode<T>* head;
-	LinkedListNode<T>* tail;
+	listNode* head;
+	listNode* tail;
 
 public:
-	LinkedList()
+	list()
 	{
 		dataCount = 0;
-		head = new LinkedListNode<T>();
-		tail = new LinkedListNode<T>();
+		head = new listNode();
+		tail = new listNode();
 		head->next = tail;
 		tail->prev = head;
 	}
-	~LinkedList()
+	~list()
 	{
-		LinkedListNode<T>* node = head;
-		LinkedListNode<T>* nextNode = head->next;
+		listNode* node = head;
+		listNode* nextNode = head->next;
 
 		while (node != nullptr)
 		{
@@ -59,10 +59,14 @@ public:
 		}
 		dataCount = 0;
 	}
+	int size() const { return dataCount; }
+	bool empty() const { return dataCount == 0; }
+	iterator begin() { return iterator(head->next); }
+	iterator end() { return iterator(tail); }
 	void push_back(const T& data)
 	{
-		LinkedListNode<T>* prevNode = tail->prev;
-		LinkedListNode<T>* newNode = new LinkedListNode<T>();
+		listNode* prevNode = tail->prev;
+		listNode* newNode = new listNode();
 		newNode->data = data;
 		prevNode->next = newNode;
 		newNode->prev = prevNode;
@@ -72,8 +76,8 @@ public:
 	}
 	void push_front(const T& data)
 	{
-		LinkedListNode<T>* nextNode = head->next;
-		LinkedListNode<T>* newNode = new LinkedListNode<T>();
+		listNode* nextNode = head->next;
+		listNode* newNode = new listNode();
 		newNode->data = data;
 		head->next = newNode;
 		newNode->prev = head;
@@ -83,9 +87,9 @@ public:
 	}
 	void push_prev(const iterator& iter, const T& data)
 	{
-		LinkedListNode<T>* currentNode = iter.current;
-		LinkedListNode<T>* prevNode = currentNode->prev;
-		LinkedListNode<T>* newNode = new LinkedListNode<T>();
+		listNode* currentNode = iter.current;
+		listNode* prevNode = currentNode->prev;
+		listNode* newNode = new listNode();
 		newNode->data = data;
 		prevNode->next = newNode;
 		newNode->prev = prevNode;
@@ -95,9 +99,9 @@ public:
 	}
 	void push_next(const iterator& iter, const T& data)
 	{
-		LinkedListNode<T>* currentNode = iter.current;
-		LinkedListNode<T>* nextNode = currentNode->next;
-		LinkedListNode<T>* newNode = new LinkedListNode<T>();
+		listNode* currentNode = iter.current;
+		listNode* nextNode = currentNode->next;
+		listNode* newNode = new listNode();
 		newNode->data = data;
 		currentNode->next = newNode;
 		newNode->prev = currentNode;
@@ -110,8 +114,8 @@ public:
 		if (0 == dataCount)
 			return;
 
-		LinkedListNode<T>* lastNode = tail->prev;
-		LinkedListNode<T>* prevNode = lastNode->prev;
+		listNode* lastNode = tail->prev;
+		listNode* prevNode = lastNode->prev;
 		prevNode->next = tail;
 		tail->prev = prevNode;
 		delete lastNode;
@@ -122,20 +126,20 @@ public:
 		if (0 == dataCount)
 			return;
 
-		LinkedListNode<T>* firstNode = head->next;
-		LinkedListNode<T>* nextNode = firstNode->next;
+		listNode* firstNode = head->next;
+		listNode* nextNode = firstNode->next;
 		head->next = nextNode;
 		nextNode->prev = head;
 		delete firstNode;
 		--dataCount;
 	}
-	iterator pop(iterator& iter)
+	iterator erase(iterator& iter)
 	{
 		if (0 == dataCount)
 			return iter;
 
-		LinkedListNode<T>* prevNode = iter.current->prev;
-		LinkedListNode<T>* nextNode = iter.current->next;
+		listNode* prevNode = iter.current->prev;
+		listNode* nextNode = iter.current->next;
 		prevNode->next = nextNode;
 		nextNode->prev = prevNode;
 		delete iter.current;
@@ -145,8 +149,8 @@ public:
 	}
 	void clear()
 	{
-		LinkedListNode<T>* node = head->next;
-		LinkedListNode<T>* nextNode;
+		listNode* node = head->next;
+		listNode* nextNode;
 
 		while (dataCount != 0)
 		{
@@ -159,10 +163,6 @@ public:
 		head->next = tail;
 		tail->prev = head;
 	}
-	int size() const { return dataCount; }
-	bool empty() const { return dataCount == 0; }
-	iterator begin() { return iterator(head->next); }
-	iterator end() { return iterator(tail); }
 };
 
 #endif //_LINKEDLIST_H_

@@ -1,22 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="DoublyLinkedList">
-      <UniqueIdentifier>{d02dcefc-1f60-4c73-b991-91a45052c468}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Default">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{5726f37b-72e5-4f49-bcf2-5f376ddb1b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Person">
+      <UniqueIdentifier>{d0c170cf-2e43-4924-a90d-cb7f8e71aaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Song">
+      <UniqueIdentifier>{fe49a0d1-9d33-4788-a299-98f93cbcc1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Snotify">
+      <UniqueIdentifier>{774e672b-e39d-4736-aaf5-0ecdcaf93a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{830bde6f-8d0a-44b1-873b-2afdfc3c1438}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Codes\main.cpp">
       <Filter>Default</Filter>
     </ClCompile>
+    <ClCompile Include="Codes\cPerson.cpp">
+      <Filter>Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Codes\cPersonGenerator.cpp">
+      <Filter>Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Codes\cSnotify.cpp">
+      <Filter>Snotify</Filter>
+    </ClCompile>
+    <ClCompile Include="Codes\cMusicGenerator.cpp">
+      <Filter>Song</Filter>
+    </ClCompile>
+    <ClCompile Include="Codes\cSong.cpp">
+      <Filter>Song</Filter>
+    </ClCompile>
+    <ClCompile Include="Codes\SoundMaster.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Codes\LinkedList.h">
-      <Filter>DoublyLinkedList</Filter>
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\cPerson.h">
+      <Filter>Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\cMusicGenerator.h">
+      <Filter>Song</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\cSong.h">
+      <Filter>Song</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\cPersonGenerator.h">
+      <Filter>Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\cSnotify.h">
+      <Filter>Snotify</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\Vector.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\HashMap.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\HashFunc.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\Functions.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Codes\SoundMaster.h">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
