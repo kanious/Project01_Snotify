@@ -66,13 +66,13 @@ unsigned int cPerson::getSnotifyUniqueUserID(void)
 
 cPerson::cPerson(cPerson* pPerson)
 {
-	this->m_Snotify_UniqueUserID = pPerson->getSnotifyUniqueUserID();
-	this->SIN = pPerson->SIN;
 	UpdateInformation(pPerson);
 }
 
 void cPerson::UpdateInformation(cPerson* pPerson)
 {
+	this->m_Snotify_UniqueUserID = pPerson->getSnotifyUniqueUserID();
+	this->SIN = pPerson->SIN;
 	this->first = pPerson->first;
 	this->middle = pPerson->middle;
 	this->last = pPerson->last;
